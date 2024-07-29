@@ -9,19 +9,14 @@ android {
         versionCode 1
         versionName "${rootProject.tools.versionName}"
     }
-
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 dependencies {
     implementation 'androidx.core:core:1.7.0'
-    api 'com.github.mhiew:pdfium-android:1.9.2'
+    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
 }
-
-// Maven Publishing
-ext {
-    PUBLISH_GROUP_ID = 'com.github.mhiew'
-    PUBLISH_VERSION = "${rootProject.tools.versionName}"
-    PUBLISH_ARTIFACT_ID = 'android-pdf-viewer'
-}
-
-apply from: "${rootProject.projectDir}/android-pdf-viewer/publish-mavencentral.gradle"

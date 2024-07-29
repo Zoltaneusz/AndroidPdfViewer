@@ -32,6 +32,7 @@ android {
 dependencies {
     implementation project(':android-pdf-viewer')
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
     implementation 'org.androidannotations:androidannotations-api:4.6.0'
     annotationProcessor "org.androidannotations:androidannotations:4.6.0"
 }
