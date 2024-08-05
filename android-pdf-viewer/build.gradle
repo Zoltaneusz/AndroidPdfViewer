@@ -1,22 +1,91 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+group = 'com.github.zoltaneusz'
+version = '3.2.3'
 
 android {
-    compileSdkVersion rootProject.tools.compileSdk
+    namespace "com.github.barteksc.pdfviewer"
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion rootProject.tools.minSdk
-        targetSdkVersion rootProject.tools.targetSdk
+        minSdkVersion 30
+        targetSdkVersion 34
         versionCode 1
-        versionName "${rootProject.tools.versionName}"
+        versionName "3.2.3"
     }
-    repositories {
-        flatDir {
-            dirs 'libs'
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+
+    publishing {
+        singleVariant("release") {
+            // if you don't want sources/javadoc, remove these lines
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            jni.srcDirs = ['libs']
+            jniLibs.srcDir 'src/main/libs'
         }
     }
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-annotations:28.0.0'
+
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.zoltaneusz'
+                artifactId = 'pdfium-android'
+                version = '1.9.1'
+            }
+        }
+        repositories {
+            mavenLocal()
+            maven { url 'https://jitpack.io' }
+        }
+    }
+//    tasks.getByPath(':assembleRelease').doLast {
+//        copy {
+//            from("$buildDir/intermediates/merged_native_libs/release/out/lib/")
+//            into("$buildDir/outputs/aar/jni/")
+//        }
+//    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'publishReleasePublicationToMavenLocal') {
+        task.dependsOn('build')
+    }
+}
+
+
+
+dependencies {
     implementation 'androidx.core:core:1.7.0'
-    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
+//    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
+    implementation 'com.github.Zoltaneusz:PdfiumAndroid:f8d7e2b73a'
 }

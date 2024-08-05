@@ -5,21 +5,18 @@ buildscript {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-}
 
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.tools.compileSdk
+    namespace "com.github.barteksc.pdfviewer"
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion rootProject.tools.minSdk
-        targetSdkVersion rootProject.tools.targetSdk
-        versionCode 3
-        versionName "${rootProject.tools.versionName}"
+        minSdkVersion 30
+        targetSdkVersion 34
+        versionCode 1
+        versionName "3.2.3"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -32,7 +29,8 @@ android {
 dependencies {
     implementation project(':android-pdf-viewer')
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
+//    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
     implementation 'org.androidannotations:androidannotations-api:4.6.0'
+    implementation 'com.github.Zoltaneusz:PdfiumAndroid:f8d7e2b73a'
     annotationProcessor "org.androidannotations:androidannotations:4.6.0"
 }
