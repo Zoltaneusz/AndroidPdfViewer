@@ -27,10 +27,8 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-
     publishing {
         singleVariant("release") {
-            // if you don't want sources/javadoc, remove these lines
             withSourcesJar()
             withJavadocJar()
         }
@@ -48,9 +46,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:support-annotations:28.0.0'
-
+    implementation 'androidx.core:core:1.7.0'
+    api 'com.github.Zoltaneusz:PdfiumAndroid:f8d7e2b73a'
 }
-
 
 afterEvaluate {
     publishing {
@@ -59,8 +57,9 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.github.zoltaneusz'
-                artifactId = 'pdfium-android'
-                version = '1.9.1'
+                artifactId = 'pdf-viewer'
+                version = '3.2.3'
+
             }
         }
         repositories {
@@ -68,24 +67,10 @@ afterEvaluate {
             maven { url 'https://jitpack.io' }
         }
     }
-//    tasks.getByPath(':assembleRelease').doLast {
-//        copy {
-//            from("$buildDir/intermediates/merged_native_libs/release/out/lib/")
-//            into("$buildDir/outputs/aar/jni/")
-//        }
-//    }
 }
 
 tasks.whenTaskAdded { task ->
     if (task.name == 'publishReleasePublicationToMavenLocal') {
         task.dependsOn('build')
     }
-}
-
-
-
-dependencies {
-    implementation 'androidx.core:core:1.7.0'
-//    implementation(name: 'PdfiumAndroid-release', ext: 'aar')
-    implementation 'com.github.Zoltaneusz:PdfiumAndroid:f8d7e2b73a'
 }
