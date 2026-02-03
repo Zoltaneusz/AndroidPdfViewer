@@ -47,7 +47,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'androidx.core:core:1.7.0'
-    api 'com.github.Zoltaneusz:PdfiumAndroid:min_SDK_28-b68e47459a-1'
+    api 'com.github.Zoltaneusz:PdfiumAndroid:min_SDK_28-SNAPSHOT'
 }
 
 afterEvaluate {
