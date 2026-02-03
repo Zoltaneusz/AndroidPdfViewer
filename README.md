@@ -1,6 +1,5 @@
 
-#### This is a fork of the [AndroidPdfViewer](https://github.com/barteksc/AndroidPdfViewer)
-switch back to the mainline repo when it gets migrated off JCenter
+#### This is a fork of the [AndroidPdfViewer](https://github.com/mhiew/AndroidPdfViewer)
 
 
 # Android PdfViewer
@@ -12,6 +11,11 @@ so if you don't like 2.x version, try 1.x.__
 Library for displaying PDF documents on Android, with `animations`, `gestures`, `zoom` and `double tap` support.
 It is based on [PdfiumAndroid](https://github.com/barteksc/PdfiumAndroid) for decoding PDF files. Works on API 11 (Android 3.0) and higher.
 Licensed under Apache License 2.0.
+## 3.3.1
+* Add 16 KB Page size
+
+## 3.2.5
+* Add clickable URL-s in PDF-s that are not annotated.
 
 ## 3.2.0-beta.3
 * Change minimum SDK version to 19
@@ -52,13 +56,13 @@ Add to _build.gradle_:
 allprojects {
   repositories {
     ...
-    mavenCentral()
+    maven { url 'https://jitpack.io' }
     ...
   }
 }
 ```
 
-`implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.3'`
+`implementation 'com.github.Zoltaneusz:AndroidPdfViewer:3.3.1'`
 
 ## ProGuard
 If you are using ProGuard, add following rule to proguard config file:
@@ -235,8 +239,6 @@ You can use a combination of the following settings to get scroll and fling beha
     .pageFling(true)
 ```
 
-## One more thing
-If you have any suggestions on making this lib better, write me, create issue or write some code and send pull request.
 
 ## License
 
