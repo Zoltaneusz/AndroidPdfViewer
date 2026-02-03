@@ -1,6 +1,8 @@
 
 #### This is a fork of the [AndroidPdfViewer](https://github.com/mhiew/AndroidPdfViewer)
 
+# Purpose
+The purpose of this fork is to have a PDF library that allows clicking plain text (not annotated) URL-s.
 
 # Android PdfViewer
 
